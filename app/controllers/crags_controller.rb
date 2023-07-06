@@ -1,5 +1,5 @@
 class CragsController < ApplicationController
   def index
-   @crags = Crags.all
+   @crags = Crag.all
   end
 end
