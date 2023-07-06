@@ -4,6 +4,6 @@ class CragsController < ApplicationController
   end
 
   def show
-    
+    @crag = Crag.find(params[:id])
   end
 end

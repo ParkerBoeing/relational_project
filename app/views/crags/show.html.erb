@@ -1,5 +1,6 @@
-<h1>Crags</h1>
-
-<% @crags.each do |crag| %>
-  <h3><%= crag.name %></h3>
-<% end %>
+<h1><%= @crag.name %></h1>
+  <p>ID: <%= @crag.id %></p>
+  <p>Elevation: <%= @crag.elevation %></p>
+  <p>Nearby camping: <%= @crag.nearby_camping %></p>
+  <p>Created at: <%= @crag.created_at %></p>
+  <p>Updated at: <%= @crag.updated_at %></p>

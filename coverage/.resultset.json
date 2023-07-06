@@ -224,6 +224,7 @@
           null,
           null,
           1,
+          1,
           null
         ]
       },
@@ -236,7 +237,7 @@
       "/Users/parkerboeing/2Mod/Projects/relational_project/app/models/crag.rb": {
         "lines": [
           1,
-          null,
+          1,
           null
         ]
       },
@@ -253,6 +254,10 @@
           1,
           1,
           null,
+          null,
+          1,
+          1,
+          null,
           null
         ]
       },
@@ -263,6 +268,6 @@
         ]
       }
     },
-    "timestamp": 1688618782
+    "timestamp": 1688621978
   }
 }
