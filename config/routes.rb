@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/crags', to: 'crags#index'
+  get '/crags/:id', to: 'crags#show'
 end

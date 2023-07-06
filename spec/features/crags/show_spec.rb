@@ -30,4 +30,16 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(crag_2.updated_at)
     end
   end
+
+  describe 'When I visit /routes' do
+    it 'shows each route in the table as well as the routes attributes' do
+      route_1 = Route.create!(name: "Malvado", meters_tall: 15, bolted: true)
+      route_2 = Route.create!(name: "Inferno", meters_tall: 10, bolted: true)
+      route_3 = Route.create!(name: "Extreme Unction", meters_tall: 20, bolted: false)
+      route_4 = Route.create!(name: "Invocation", meters_tall: 25, bolted: true)
+      crag_1 = Crag.create!(name: "Watchtower", elevation: 4500, nearby_camping: false)
+      crag_2 = Crag.create!(name: "Diablo", elevation: 9000, nearby_camping: true)
+
+    end
+  end
 end
