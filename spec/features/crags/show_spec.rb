@@ -16,6 +16,12 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(@crag_1.name)
       expect(page).to have_content(@crag_2.name)
     end
+
+    it 'has a link back to the routes index page' do
+      visit "/crags"
+      click_on "Routes Index"
+      expect(current_path).to eq("/routes")
+    end
   end
 
   describe 'When I visit crags/:id' do
@@ -35,6 +41,20 @@ RSpec.describe 'crags page' do
 
     it 'has a link back to the crag index page' do
       visit "/crags/#{@crag_1.id}"
+      click_on "Crags Index"
+      expect(current_path).to eq("/crags")
+    end
+
+    it 'has a link back to the routes index page' do
+      visit "/crags/#{@crag_1.id}"
+      click_on "Routes Index"
+      expect(current_path).to eq("/routes")
+    end
+
+    it 'has a link to an index page with all the routes associated with the crag' do
+      visit "/crags/#{@crag_1.id}"
+      click_on "Crag Routes"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
     end
   end
 
@@ -57,6 +77,18 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(@route_2.crag_id)
       expect(page).to_not have_content(@route_3.name)
       expect(page).to_not have_content(@route_4.name)
+    end
+
+    it 'has a link back to the crag index page' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Crags Index"
+      expect(current_path).to eq("/crags")
+    end
+
+    it 'has a link back to the routes index page' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Routes Index"
+      expect(current_path).to eq("/routes")
     end
   end
 end

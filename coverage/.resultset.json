@@ -251,23 +251,43 @@
           null
         ]
       },
-      "/Users/parkerboeing/2Mod/Projects/relational_project/spec/models/route_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          2,
-          null
-        ]
-      },
       "/Users/parkerboeing/2Mod/Projects/relational_project/app/models/route.rb": {
         "lines": [
           1,
           1,
           null
         ]
+      },
+      "/Users/parkerboeing/2Mod/Projects/relational_project/app/controllers/crags_controller.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/Users/parkerboeing/2Mod/Projects/relational_project/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/parkerboeing/2Mod/Projects/relational_project/app/controllers/crag_routes_controller.rb": {
+        "lines": [
+          1,
+          1,
+          3,
+          3,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1688887525
+    "timestamp": 1688888570
   }
 }

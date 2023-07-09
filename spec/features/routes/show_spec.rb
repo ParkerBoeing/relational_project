@@ -25,6 +25,12 @@ RSpec.describe 'routes page' do
       expect(page).to have_content(@route_2.updated_at)
       expect(page).to have_content(@route_2.crag_id)
     end
+
+    it 'has a link back to the crags index page' do
+      visit "/routes"
+      click_on "Crags Index"
+      expect(current_path).to eq("/crags")
+    end
   end
 
   describe 'When I visit routes/:id' do
@@ -38,6 +44,18 @@ RSpec.describe 'routes page' do
       expect(page).to have_content(@route_1.created_at)
       expect(page).to have_content(@route_1.updated_at)
       expect(page).to have_content(@route_1.crag_id)
+    end
+
+    it 'has a link back to the crags index page' do
+      visit "/routes/#{@route_1.id}"
+      click_on "Crags Index"
+      expect(current_path).to eq("/crags")
+    end
+
+    it 'has a link back to the routes index page' do
+      visit "/routes/#{@route_1.id}"
+      click_on "Routes Index"
+      expect(current_path).to eq("/routes")
     end
   end
 end
