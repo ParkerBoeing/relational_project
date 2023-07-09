@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   get '/crags', to: 'crags#index'
   get '/crags/:id', to: 'crags#show'
+  get '/routes', to: 'routes#index'
+  get '/routes/:id', to: 'routes#show'
+  get '/crags/:crag_id/routes', to: 'crag_routes#index'
 end
