@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'crags page' do
   before :each do
-    @crag_1 = Crag.create!(name: "Watchtower", elevation: 4500, nearby_camping: false)
+    @crag_1 = Crag.create!(name: "Watchtower", elevation: 4500, nearby_camping: false, created_at: 1.day.ago)
     @crag_2 = Crag.create!(name: "Diablo", elevation: 9000, nearby_camping: true)
     @route_1 = @crag_1.routes.create!(name: "Extreme Unction", meters_tall: 20, bolted: false)
     @route_2 = @crag_1.routes.create!(name: "Invocation", meters_tall: 25, bolted: true)
@@ -22,6 +22,27 @@ RSpec.describe 'crags page' do
       click_on "Routes Index"
       expect(current_path).to eq("/routes")
     end
+
+    it 'displays crags sorted by most recently created' do
+      visit "/crags"
+      crags = page.all('.h3').map
+    end
+
+    it 'displays when the crag was created' do
+      visit "/crags"
+      expect(page).to have_content(@crag_1.created_at)
+      expect(page).to have_content(@crag_2.created_at)
+    end
+
+    it 'has a link back to create a new crag' do
+      visit "/crags"
+      click_on "New Crag"
+      expect(current_path).to eq("/crags/new")
+    end
+  end
+
+  describe 'When I visit /crags/new' do
+    
   end
 
   describe 'When I visit crags/:id' do
@@ -55,6 +76,12 @@ RSpec.describe 'crags page' do
       visit "/crags/#{@crag_1.id}"
       click_on "Routes"
       expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
+    end
+
+    it 'shows the number of routes associated' do
+      visit "/crags/#{@crag_1.id}"
+      # save_and_open_page
+      expect(page).to have_content("Number of routes: 2")
     end
   end
 
