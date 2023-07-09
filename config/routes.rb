@@ -5,4 +5,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/crags', to: 'crags#index'
+  get '/crags/:id', to: 'crags#show'
+  get '/routes', to: 'routes#index'
+  get '/routes/:id', to: 'routes#show'
+  get '/crags/:crag_id/routes', to: 'crag_routes#index'
+  get '/crags/new', to: 'crags#new'
+  post '/crags', to: 'crags#create'
 end
