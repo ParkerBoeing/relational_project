@@ -42,7 +42,11 @@ RSpec.describe 'crags page' do
   end
 
   describe 'When I visit /crags/new' do
-    
+    it 'has fields to create new crag' do
+      visit "/crags/new"
+      save_and_open_page
+      expect(page).to have_content(@crag_1.created_at)
+    end
   end
 
   describe 'When I visit crags/:id' do

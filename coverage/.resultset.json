@@ -228,6 +228,8 @@
           1,
           1,
           1,
+          1,
+          1,
           null
         ]
       },
@@ -331,11 +333,26 @@
         "lines": [
           1,
           1,
-          8,
+          9,
           null,
           null,
           1,
           5,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          0,
           null,
           null
         ]
@@ -370,6 +387,6 @@
         ]
       }
     },
-    "timestamp": 1688895608
+    "timestamp": 1688930187
   }
 }

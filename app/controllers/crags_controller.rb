@@ -13,7 +13,7 @@ class CragsController < ApplicationController
   def create
     crag = Crag.new({
       name: params[:crag][:name],
-      meters_tall: params[:crag][:meters_tall]
+      meters_tall: params[:crag][:meters_tall],
       nearby_camping: params[:crag][:nearby_camping]
     })
 
