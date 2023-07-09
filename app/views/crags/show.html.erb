@@ -1,6 +1,9 @@
+<a href="/crags">Crags Index</a>
+<a href="/routes">Routes Index</a>
 <h1><%= @crag.name %></h1>
   <p>ID: <%= @crag.id %></p>
   <p>Elevation: <%= @crag.elevation %></p>
   <p>Nearby camping: <%= @crag.nearby_camping %></p>
   <p>Created at: <%= @crag.created_at %></p>
   <p>Updated at: <%= @crag.updated_at %></p>
+  <p><%= link_to "Routes", "/crags/#{@crag.id}/routes" %></p>

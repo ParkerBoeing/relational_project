@@ -53,7 +53,7 @@ RSpec.describe 'crags page' do
 
     it 'has a link to an index page with all the routes associated with the crag' do
       visit "/crags/#{@crag_1.id}"
-      click_on "Crag Routes"
+      click_on "Routes"
       expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
     end
   end
