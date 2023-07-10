@@ -11,3 +11,4 @@
     <p>Crag ID: <%= route.crag_id %></p>
 <% end %>
 <p><%= link_to "Create Route", "/crags/#{@crag.id}/routes/new" %></p>
+<a href="/crags/<%= @crag.id %>/routes?sort=name">Alphabetize</a>

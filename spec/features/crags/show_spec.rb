@@ -174,7 +174,6 @@ RSpec.describe 'crags page' do
 
       expect(@route_5.name).to appear_before(@route_4.name)
       expect(@route_4.name).to appear_before(@route_3.name)
-
     end
   end
 end
