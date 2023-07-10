@@ -370,13 +370,39 @@
           null
         ]
       },
+      "/Users/parkerboeing/2Mod/Projects/relational_project/spec/models/crag_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/parkerboeing/2Mod/Projects/relational_project/app/models/crag.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          8,
+          9,
           null,
           null
         ]
@@ -388,17 +414,50 @@
           null
         ]
       },
+      "/Users/parkerboeing/2Mod/Projects/relational_project/spec/models/route_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/parkerboeing/2Mod/Projects/relational_project/app/models/route.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          9,
+          10,
           null,
           null,
           1,
-          1,
+          2,
           null,
           null
         ]
@@ -444,6 +503,8 @@
           1,
           null,
           null,
+          1,
+          1,
           1,
           1,
           null,
@@ -515,6 +576,6 @@
         ]
       }
     },
-    "timestamp": 1689026229
+    "timestamp": 1689026730
   }
 }

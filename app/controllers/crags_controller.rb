@@ -38,6 +38,8 @@ class CragsController < ApplicationController
   end
 
   def destroy
+    crag = Crag.find(params[:id])
+    crag.destroy
     redirect_to "/crags"
   end
 end
