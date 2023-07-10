@@ -10,10 +10,10 @@ RSpec.describe 'routes page' do
     @route_4 = @crag_2.routes.create!(name: "Inferno", meters_tall: 10, bolted: true)
   end
   describe 'When I visit /routes' do
-    it 'shows each route in the table as well as the routes attributes' do
+    it 'shows each route in the table as well as the routes attributes, as long as bolted is assigned as true' do
       visit "/routes"
-      # expect(page).to_not have_content(@route_1.name)
-      # expect(page).to_not have_content(@route_1.bolted)
+      expect(page).to_not have_content(@route_1.name)
+      expect(page).to_not have_content(@route_1.bolted)
 
 
       expect(page).to have_content(@route_2.name)

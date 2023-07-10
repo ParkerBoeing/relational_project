@@ -1,6 +1,6 @@
 class RoutesController < ApplicationController
   def index
-   @routes = Route.all
+   @routes = Route.bolted_routes
   end
 
   def show
