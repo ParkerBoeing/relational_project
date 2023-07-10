@@ -163,5 +163,18 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(30)
       expect(page).to have_content(true)
     end
+
+    it 'has a link to alphabetize the order of routes' do
+      @route_5 = @crag_2.routes.create!(name: "Astroman", meters_tall: 40, bolted: true)
+      visit "/crags/#{@crag_2.id}/routes"
+      expect(@route_3.name).to appear_before(@route_4.name)
+      expect(@route_4.name).to appear_before(@route_5.name)
+
+      click_on "Alphabetize"
+
+      expect(@route_5.name).to appear_before(@route_4.name)
+      expect(@route_4.name).to appear_before(@route_3.name)
+
+    end
   end
 end

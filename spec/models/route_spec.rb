@@ -22,7 +22,7 @@ RSpec.describe Route do
 
     describe '#alphabetize' do
       it 'returns the list of routes in alphabetized order' do
-        expect(Route.alphabetize).to eq(@route_1, @route_4, @route_2, @route_3)
+        expect(Route.alphabetize).to eq([@route_1, @route_4, @route_2, @route_3])
       end
     end
   end
