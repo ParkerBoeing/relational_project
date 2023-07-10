@@ -19,5 +19,11 @@ RSpec.describe Route do
         expect(bolted_routes).to include(@route_2, @route_3, @route_4)
       end
     end
+
+    describe '#alphabetize' do
+      it 'returns the list of routes in alphabetized order' do
+        expect(Route.alphabetize).to eq(@route_1, @route_4, @route_2, @route_3)
+      end
+    end
   end
 end
