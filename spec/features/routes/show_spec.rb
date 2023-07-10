@@ -86,6 +86,16 @@ RSpec.describe 'routes page' do
       click_on "Routes Index"
       expect(current_path).to eq("/routes")
     end
+
+    # User Story 20, Child Delete 
+
+    # As a visitor
+    # When I visit a child show page
+    # Then I see a link to delete the child "Delete Child"
+    # When I click the link
+    # Then a 'DELETE' request is sent to '/child_table_name/:id',
+    # the child is deleted,
+    # and I am redirected to the child index page where I no longer see this child
   end
 
   describe 'route update' do
