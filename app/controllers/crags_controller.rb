@@ -10,12 +10,14 @@ class CragsController < ApplicationController
   def new
   end
 
+  def crag_params
+    params.permit(:name)
+    params.permit(:elevation)
+    params.permit(:nearby_camping)
+  end
+
   def create
-    crag = Crag.new({
-      name: params[:crag][:name],
-      elevation: params[:crag][:elevation],
-      nearby_camping: params[:crag][:nearby_camping]
-    })
+    crag = Crag.new(crag_params)
     crag.save
     redirect_to "/crags"
   end

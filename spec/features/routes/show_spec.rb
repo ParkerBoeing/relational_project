@@ -58,4 +58,36 @@ RSpec.describe 'routes page' do
       expect(current_path).to eq("/routes")
     end
   end
+
+  describe 'route update' do
+    it 'has a link to update the information of the route' do
+      visit "/routes/#{@route_1.id}"
+      click_on "Update Route"
+      expect(current_path).to eq("/routes/#{@route_1.id}/edit")
+
+      fill_in('route[name]', with: 'Cosmic Journey')
+      fill_in('route[meters_tall]', with: 30)
+      fill_in('route[bolted]', with: false)
+      click_button('submit')
+      expect(current_path).to eq("/routes/#{@route_1.id}")
+
+      expect(page).to have_content("Cosmic Journey")
+      expect(page).to_not have_content("Malvado")
+      expect(page).to have_content(30)
+      expect(page).to_not have_content(15)
+      expect(page).to have_content(false)
+      expect(page).to_not have_content(true)
+    end
+  end
+    # User Story 14, Child Update 
+
+    # As a visitor
+    # When I visit a Child Show page
+    # Then I see a link to update that Child "Update Child"
+    # When I click the link
+    # I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes:
+    # When I click the button to submit the form "Update Child"
+    # Then a `PATCH` request is sent to '/child_table_name/:id',
+    # the child's data is updated,
+    # and I am redirected to the Child Show page where I see the Child's updated information
 end

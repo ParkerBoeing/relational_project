@@ -5,10 +5,13 @@ class CragRoutesController < ApplicationController
   end
 
   def new
+    @crag = Crag.find(params[:crag_id])
+    @routes = @crag.routes
   end
 
   def create
-    route = crag.routes.create!({
+    @crag = Crag.find(params[:crag_id])
+    route = @crag.routes.create!({
       name: params[:route][:name],
       meters_tall: params[:route][:meters_tall],
       bolted: params[:route][:bolted]
