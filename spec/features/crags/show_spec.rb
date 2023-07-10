@@ -25,7 +25,7 @@ RSpec.describe 'crags page' do
 
     it 'displays crags sorted by most recently created' do
       visit "/crags"
-      crags = page.all('.h3').map
+      expect(@crag_2.name).to appear_before(@crag_1.name)
     end
 
     it 'displays when the crag was created' do
@@ -44,8 +44,13 @@ RSpec.describe 'crags page' do
   describe 'When I visit /crags/new' do
     it 'has fields to create new crag' do
       visit "/crags/new"
-      save_and_open_page
-      expect(page).to have_content(@crag_1.created_at)
+      fill_in('crag[name]', with: 'Hell')
+      fill_in('crag[elevation]', with: 9500)
+      fill_in('crag[nearby_camping]', with: true)
+      click_button('submit')
+      new_crag_name = Crag.last.name
+      expect(current_path).to eq("/crags")
+      expect(page).to have_content(new_crag_name)
     end
   end
 
@@ -62,7 +67,6 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(@crag_1.created_at)
       expect(page).to have_content(@crag_1.updated_at)
     end
-
 
     it 'has a link back to the crag index page' do
       visit "/crags/#{@crag_1.id}"
@@ -84,13 +88,31 @@ RSpec.describe 'crags page' do
 
     it 'shows the number of routes associated' do
       visit "/crags/#{@crag_1.id}"
-      # save_and_open_page
       expect(page).to have_content("Number of routes: 2")
+    end
+
+    it 'has a button to enable updates' do
+      visit "/crags/#{@crag_1.id}"
+      click_on "Update Crag"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/edit")
+
+      fill_in('crag[name]', with: 'Hell')
+      fill_in('crag[elevation]', with: 9500)
+      fill_in('crag[nearby_camping]', with: true)
+      click_button('submit')
+      expect(current_path).to eq("/crags/#{@crag_1.id}")
+
+      expect(page).to have_content("Hell")
+      expect(page).to_not have_content("Watchtower")
+      expect(page).to have_content(9500)
+      expect(page).to_not have_content(4500)
+      expect(page).to have_content(true)
+      expect(page).to_not have_content(false)
     end
   end
 
   describe 'When I visit /crags/:crag_id/routes' do
-    it 'shows each route in the table as well as the routes attributes' do
+    it 'shows each route associated with the crag as well as the routes attributes' do
       visit "/crags/#{@crag_1.id}/routes"
       expect(page).to have_content(@route_1.name)
       expect(page).to have_content(@route_1.id)
@@ -121,5 +143,22 @@ RSpec.describe 'crags page' do
       click_on "Routes Index"
       expect(current_path).to eq("/routes")
     end
+
+    it 'has a link to create child automatically associated with given crag ID' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Create Route"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes/new")
+    end
+    # User Story 13, Parent Child Creation 
+    # As a visitor
+    # When I visit a Parent Children Index page
+    # Then I see a link to add a new adoptable child for that parent "Create Child"
+    # When I click the link
+    # I am taken to '/parents/:parent_id/child_table_name/new' where I see a form to add a new adoptable child
+    # When I fill in the form with the child's attributes:
+    # And I click the button "Create Child"
+    # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
+    # a new child object/row is created for that parent,
+    # and I am redirected to the Parent Childs Index page where I can see the new child listed
   end
 end

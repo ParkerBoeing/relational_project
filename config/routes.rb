@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   get '/routes/:id', to: 'routes#show'
   get '/crags/:crag_id/routes', to: 'crag_routes#index'
   post '/crags', to: 'crags#create'
+  get "/crags/:id/edit", to: "crags#edit"
+  patch "/crags/:id", to: "crags#update"
+  get '/crags/:crag_id/routes/new', to: 'crag_routes#new'
+  
 end
