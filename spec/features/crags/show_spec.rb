@@ -39,6 +39,15 @@ RSpec.describe 'crags page' do
       click_on "New Crag"
       expect(current_path).to eq("/crags/new")
     end
+
+    it 'next to each crag there is a link to update that crag' do
+      visit "/crags"
+      click_on "Watchtower Update"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/edit")
+      visit "/crags"
+      click_on "Diablo Update"
+      expect(current_path).to eq("/crags/#{@crag_2.id}/edit")
+    end
   end
 
   describe 'When I visit /crags/new' do

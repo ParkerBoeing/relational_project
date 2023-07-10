@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Route do
   it {should belong_to :crag}
 
-  describe 'instance methods' do
+  describe 'class methods' do
     before :each do
       @crag_1 = Crag.create!(name: "Watchtower", elevation: 4500, nearby_camping: false)
       @crag_2 = Crag.create!(name: "Diablo", elevation: 9000, nearby_camping: true)
