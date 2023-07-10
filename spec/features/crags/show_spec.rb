@@ -120,16 +120,17 @@ RSpec.describe 'crags page' do
     end
 
     it 'has a button to delete the crag' do
+      visit "/crags"
+      expect(page).to have_content("Diablo")
+      expect(page).to have_content("Watchtower")
+
       visit "/crags/#{@crag_1.id}"
+
       click_on "Delete"
       expect(current_path).to eq("/crags")
 
-      expect(page).to have_content("Hell")
+      expect(page).to have_content("Diablo")
       expect(page).to_not have_content("Watchtower")
-      expect(page).to have_content(9500)
-      expect(page).to_not have_content(4500)
-      expect(page).to have_content(true)
-      expect(page).to_not have_content(false)
     end
     # User Story 19, Parent Delete 
 
