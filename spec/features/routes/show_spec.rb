@@ -46,6 +46,24 @@ RSpec.describe 'routes page' do
       click_on "Crags Index"
       expect(current_path).to eq("/crags")
     end
+
+    it 'next to each route there is a link to update that route' do
+      visit "/routes"
+      click_on "Extreme Unction Update"
+      expect(current_path).to eq("/crags/#{@route_1.id}/edit")
+      
+      visit "/routes"
+      click_on "Invocation Update"
+      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+
+      visit "/routes"
+      click_on "Malvado Update"
+      expect(current_path).to eq("/crags/#{@route_3.id}/edit")
+
+      visit "/routes"
+      click_on "Inferno Update"
+      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+    end
   end
 
   describe 'When I visit routes/:id' do

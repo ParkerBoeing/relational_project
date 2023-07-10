@@ -184,5 +184,14 @@ RSpec.describe 'crags page' do
       expect(@route_5.name).to appear_before(@route_4.name)
       expect(@route_4.name).to appear_before(@route_3.name)
     end
+
+    it 'next to each route there is a link to update that route' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Extreme Unction Update"
+      expect(current_path).to eq("/crags/#{@route_1.id}/edit")
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Invocation Update"
+      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+    end
   end
 end
