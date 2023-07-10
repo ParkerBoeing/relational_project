@@ -9,4 +9,7 @@
     <p>Created at: <%= route.created_at %></p>
     <p>Updated at: <%= route.updated_at %></p>
     <p>Crag ID: <%= route.crag_id %></p>
+    <p><a href="/routes/<%= route.id %>/edit"><%= route.name %> Update</a></p>
 <% end %>
+<p><%= link_to "Create Route", "/crags/#{@crag.id}/routes/new" %></p>
+<a href="/crags/<%= @crag.id %>/routes?sort=name">Alphabetize</a>

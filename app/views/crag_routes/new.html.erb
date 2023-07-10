@@ -1,0 +1,12 @@
+
+<form action="/crags/<%= @crag.id %>/routes" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new route:</p>
+  <p>Route name:</p>
+  <input type='text' name='route[name]'><br/>
+  <p>Meters tall:</p>
+  <input type='integer' name='route[meters_tall]'><br/>
+  <p>Bolted:</p>
+  <input type='boolean' name='route[bolted]'><br/>
+  <input type='submit' value="submit">
+</form>

@@ -25,7 +25,7 @@ RSpec.describe 'crags page' do
 
     it 'displays crags sorted by most recently created' do
       visit "/crags"
-      crags = page.all('.h3').map
+      expect(@crag_2.name).to appear_before(@crag_1.name)
     end
 
     it 'displays when the crag was created' do
@@ -39,10 +39,28 @@ RSpec.describe 'crags page' do
       click_on "New Crag"
       expect(current_path).to eq("/crags/new")
     end
+
+    it 'next to each crag there is a link to update that crag' do
+      visit "/crags"
+      click_on "Watchtower Update"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/edit")
+      visit "/crags"
+      click_on "Diablo Update"
+      expect(current_path).to eq("/crags/#{@crag_2.id}/edit")
+    end
   end
 
   describe 'When I visit /crags/new' do
-    
+    it 'has fields to create new crag' do
+      visit "/crags/new"
+      fill_in('crag[name]', with: 'Hell')
+      fill_in('crag[elevation]', with: 9500)
+      fill_in('crag[nearby_camping]', with: true)
+      click_button('submit')
+      new_crag_name = Crag.last.name
+      expect(current_path).to eq("/crags")
+      expect(page).to have_content(new_crag_name)
+    end
   end
 
   describe 'When I visit crags/:id' do
@@ -58,7 +76,6 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(@crag_1.created_at)
       expect(page).to have_content(@crag_1.updated_at)
     end
-
 
     it 'has a link back to the crag index page' do
       visit "/crags/#{@crag_1.id}"
@@ -80,13 +97,31 @@ RSpec.describe 'crags page' do
 
     it 'shows the number of routes associated' do
       visit "/crags/#{@crag_1.id}"
-      # save_and_open_page
       expect(page).to have_content("Number of routes: 2")
+    end
+
+    it 'has a button to enable updates' do
+      visit "/crags/#{@crag_1.id}"
+      click_on "Update Crag"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/edit")
+
+      fill_in('crag[name]', with: 'Hell')
+      fill_in('crag[elevation]', with: 9500)
+      fill_in('crag[nearby_camping]', with: true)
+      click_button('submit')
+      expect(current_path).to eq("/crags/#{@crag_1.id}")
+
+      expect(page).to have_content("Hell")
+      expect(page).to_not have_content("Watchtower")
+      expect(page).to have_content(9500)
+      expect(page).to_not have_content(4500)
+      expect(page).to have_content(true)
+      expect(page).to_not have_content(false)
     end
   end
 
   describe 'When I visit /crags/:crag_id/routes' do
-    it 'shows each route in the table as well as the routes attributes' do
+    it 'shows each route associated with the crag as well as the routes attributes' do
       visit "/crags/#{@crag_1.id}/routes"
       expect(page).to have_content(@route_1.name)
       expect(page).to have_content(@route_1.id)
@@ -116,6 +151,47 @@ RSpec.describe 'crags page' do
       visit "/crags/#{@crag_1.id}/routes"
       click_on "Routes Index"
       expect(current_path).to eq("/routes")
+    end
+
+    it 'has a link to create child automatically associated with given crag ID' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Create Route"
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes/new")
+    end
+
+    it 'can create a child automatically associated with given crag ID' do
+      visit "/crags/#{@crag_1.id}/routes/new"
+      fill_in('route[name]', with: 'Escapades')
+      fill_in('route[meters_tall]', with: 30)
+      fill_in('route[bolted]', with: true)
+  
+      click_button('submit')
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
+
+      expect(page).to have_content("Escapades")
+      expect(page).to have_content(30)
+      expect(page).to have_content(true)
+    end
+
+    it 'has a link to alphabetize the order of routes' do
+      @route_5 = @crag_2.routes.create!(name: "Astroman", meters_tall: 40, bolted: true)
+      visit "/crags/#{@crag_2.id}/routes"
+      expect(@route_3.name).to appear_before(@route_4.name)
+      expect(@route_4.name).to appear_before(@route_5.name)
+
+      click_on "Alphabetize"
+
+      expect(@route_5.name).to appear_before(@route_4.name)
+      expect(@route_4.name).to appear_before(@route_3.name)
+    end
+
+    it 'next to each route there is a link to update that route' do
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Extreme Unction Update"
+      expect(current_path).to eq("/routes/#{@route_1.id}/edit")
+      visit "/crags/#{@crag_1.id}/routes"
+      click_on "Invocation Update"
+      expect(current_path).to eq("/routes/#{@route_2.id}/edit")
     end
   end
 end

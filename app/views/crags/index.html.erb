@@ -2,6 +2,7 @@
 <h1>Crags</h1>
 <% @crags.each do |crag| %>
   <h3><%= crag.name %> <%= crag.created_at %></h3>
+  <p><a href="/crags/<%= crag.id %>/edit"><%= crag.name %> Update</a></p>
 <% end %>
 
 <a href="/crags/new">New Crag</a>
