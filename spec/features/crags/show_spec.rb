@@ -188,10 +188,10 @@ RSpec.describe 'crags page' do
     it 'next to each route there is a link to update that route' do
       visit "/crags/#{@crag_1.id}/routes"
       click_on "Extreme Unction Update"
-      expect(current_path).to eq("/crags/#{@route_1.id}/edit")
+      expect(current_path).to eq("/routes/#{@route_1.id}/edit")
       visit "/crags/#{@crag_1.id}/routes"
       click_on "Invocation Update"
-      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+      expect(current_path).to eq("/routes/#{@route_2.id}/edit")
     end
   end
 end

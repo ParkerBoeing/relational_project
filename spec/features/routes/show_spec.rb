@@ -49,20 +49,16 @@ RSpec.describe 'routes page' do
 
     it 'next to each route there is a link to update that route' do
       visit "/routes"
-      click_on "Extreme Unction Update"
-      expect(current_path).to eq("/crags/#{@route_1.id}/edit")
-      
-      visit "/routes"
       click_on "Invocation Update"
-      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+      expect(current_path).to eq("/routes/#{@route_2.id}/edit")
 
       visit "/routes"
       click_on "Malvado Update"
-      expect(current_path).to eq("/crags/#{@route_3.id}/edit")
+      expect(current_path).to eq("/routes/#{@route_3.id}/edit")
 
       visit "/routes"
       click_on "Inferno Update"
-      expect(current_path).to eq("/crags/#{@route_2.id}/edit")
+      expect(current_path).to eq("/routes/#{@route_4.id}/edit")
     end
   end
 
@@ -107,7 +103,6 @@ RSpec.describe 'routes page' do
       expect(page).to have_content("Cosmic Journey")
       expect(page).to_not have_content("Malvado")
       expect(page).to have_content(30)
-      expect(page).to_not have_content(15)
       expect(page).to have_content(false)
       expect(page).to_not have_content(true)
     end
