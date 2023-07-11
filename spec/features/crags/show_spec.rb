@@ -60,14 +60,6 @@ RSpec.describe 'crags page' do
       expect(page).to have_content("Diablo")
       expect(page).to_not have_content("Watchtower")
     end
-
-    # User Story 22, Parent Delete From Parent Index Page 
-
-    # As a visitor
-    # When I visit the parent index page
-    # Next to every parent, I see a link to delete that parent
-    # When I click the link
-    # I am returned to the Parent Index Page where I no longer see that parent
   end
 
   describe 'When I visit /crags/new' do
