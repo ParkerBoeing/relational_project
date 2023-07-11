@@ -60,6 +60,14 @@ RSpec.describe 'routes page' do
       click_on "Inferno Update"
       expect(current_path).to eq("/routes/#{@route_4.id}/edit")
     end
+
+    # User Story 23, Child Delete From Childs Index Page 
+
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to delete that child
+    # When I click the link
+    # I should be taken to the `child_table_name` index page where I no longer see that child
   end
 
   describe 'When I visit routes/:id' do
@@ -101,15 +109,6 @@ RSpec.describe 'routes page' do
       expect(page).to have_content("Malvado")
       expect(page).to have_content("Inferno")
     end
-    # User Story 20, Child Delete 
-
-    # As a visitor
-    # When I visit a child show page
-    # Then I see a link to delete the child "Delete Child"
-    # When I click the link
-    # Then a 'DELETE' request is sent to '/child_table_name/:id',
-    # the child is deleted,
-    # and I am redirected to the child index page where I no longer see this child
   end
 
   describe 'route update' do

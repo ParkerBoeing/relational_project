@@ -21,4 +21,10 @@ class RoutesController < ApplicationController
     route.save
     redirect_to "/routes/#{route.id}"
   end
+
+  def destroy
+    route = Route.find(params[:id])
+    route.destroy
+    redirect_to "/routes"
+  end
 end

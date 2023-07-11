@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get "/routes/:id/edit", to: "routes#edit"
   patch "/routes/:id", to: "routes#update"
   delete "/crags/:id", to: "crags#destroy"
+  delete "/routes/:id", to: "routes#destroy"
 end
