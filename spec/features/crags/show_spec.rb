@@ -224,13 +224,14 @@ RSpec.describe 'crags page' do
       @route_5 = @crag_1.routes.create!(name: "Mars", meters_tall: 10, bolted: false)
       @route_6 = @crag_1.routes.create!(name: "Scar", meters_tall: 15, bolted: true)
       visit "/crags/#{@crag_1.id}/routes"
-      fill_in('Height in meters:', with: 19)
+
       expect(page).to have_content("Invocation")
       expect(page).to have_content("Extreme Unction")
       expect(page).to have_content("Mars")
       expect(page).to have_content("Scar")
   
-      click_button('filter')
+      fill_in(:threshold, with: 19)
+      click_button('Filter')
       expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
 
       expect(page).to have_content("Invocation")

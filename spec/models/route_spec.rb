@@ -13,14 +13,14 @@ RSpec.describe Route do
       @route_4 = @crag_2.routes.create!(name: "Inferno", meters_tall: 10, bolted: true)
     end
 
-    describe '#bolted_routes' do
+    describe '.bolted_routes' do
       it 'returns the routes with true boolean values for bolted' do
         bolted_routes = Route.bolted_routes
         expect(bolted_routes).to include(@route_2, @route_3, @route_4)
       end
     end
 
-    describe '#alphabetize' do
+    describe '.alphabetize' do
       it 'returns the list of routes in alphabetized order' do
         expect(Route.alphabetize).to eq([@route_1, @route_4, @route_2, @route_3])
       end
