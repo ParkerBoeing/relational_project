@@ -48,6 +48,18 @@ RSpec.describe 'crags page' do
       click_on "Diablo Update"
       expect(current_path).to eq("/crags/#{@crag_2.id}/edit")
     end
+
+    it 'has a button to delete the crag' do
+      visit "/crags"
+      expect(page).to have_content("Diablo")
+      expect(page).to have_content("Watchtower")
+
+      click_on "Watchtower Delete"
+      expect(current_path).to eq("/crags")
+
+      expect(page).to have_content("Diablo")
+      expect(page).to_not have_content("Watchtower")
+    end
   end
 
   describe 'When I visit /crags/new' do
@@ -118,6 +130,20 @@ RSpec.describe 'crags page' do
       expect(page).to have_content(true)
       expect(page).to_not have_content(false)
     end
+
+    it 'has a button to delete the crag' do
+      visit "/crags"
+      expect(page).to have_content("Diablo")
+      expect(page).to have_content("Watchtower")
+
+      visit "/crags/#{@crag_1.id}"
+
+      click_on "Delete"
+      expect(current_path).to eq("/crags")
+
+      expect(page).to have_content("Diablo")
+      expect(page).to_not have_content("Watchtower")
+    end
   end
 
   describe 'When I visit /crags/:crag_id/routes' do
@@ -159,7 +185,7 @@ RSpec.describe 'crags page' do
       expect(current_path).to eq("/crags/#{@crag_1.id}/routes/new")
     end
 
-    it 'can create a child automatically associated with given crag ID' do
+    it 'can create a route automatically associated with given crag ID' do
       visit "/crags/#{@crag_1.id}/routes/new"
       fill_in('route[name]', with: 'Escapades')
       fill_in('route[meters_tall]', with: 30)
@@ -192,6 +218,26 @@ RSpec.describe 'crags page' do
       visit "/crags/#{@crag_1.id}/routes"
       click_on "Invocation Update"
       expect(current_path).to eq("/routes/#{@route_2.id}/edit")
+    end
+
+    it 'can display route records with meters_tall over a given threshhold' do
+      @route_5 = @crag_1.routes.create!(name: "Mars", meters_tall: 10, bolted: false)
+      @route_6 = @crag_1.routes.create!(name: "Scar", meters_tall: 15, bolted: true)
+      visit "/crags/#{@crag_1.id}/routes"
+
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Extreme Unction")
+      expect(page).to have_content("Mars")
+      expect(page).to have_content("Scar")
+  
+      fill_in(:threshold, with: 19)
+      click_button('Filter')
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
+
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Extreme Unction")
+      expect(page).to_not have_content("Mars")
+      expect(page).to_not have_content("Scar")
     end
   end
 end

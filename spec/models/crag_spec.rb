@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Crag do
-  it {should have_many :routes}
+  it {should have_many(:routes).dependent(:destroy)}
 
   describe 'instance methods' do
     before :each do

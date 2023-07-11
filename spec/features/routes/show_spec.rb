@@ -60,6 +60,19 @@ RSpec.describe 'routes page' do
       click_on "Inferno Update"
       expect(current_path).to eq("/routes/#{@route_4.id}/edit")
     end
+
+    it 'has a button to delete the route' do
+      visit "/routes"
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
+
+      click_on "Invocation Delete"
+
+      expect(page).to_not have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
+    end
   end
 
   describe 'When I visit routes/:id' do
@@ -85,6 +98,21 @@ RSpec.describe 'routes page' do
       visit "/routes/#{@route_1.id}"
       click_on "Routes Index"
       expect(current_path).to eq("/routes")
+    end
+
+    it 'has a button to delete the route' do
+      visit "/routes"
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
+
+      visit "/routes/#{@route_2.id}"
+      click_on "Delete"
+      expect(current_path).to eq("/routes")
+
+      expect(page).to_not have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
     end
   end
 

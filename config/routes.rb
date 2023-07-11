@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   post '/crags/:crag_id/routes', to: 'crag_routes#create'
   get "/routes/:id/edit", to: "routes#edit"
   patch "/routes/:id", to: "routes#update"
+  delete "/crags/:id", to: "crags#destroy"
+  delete "/routes/:id", to: "routes#destroy"
 end
