@@ -7,7 +7,7 @@ class CragRoutesController < ApplicationController
                 @crag.routes
               end
     if params[:threshold].present?
-      @routes = @routes.where("meters_tall > ?", params[:threshold])
+      @routes = @routes.where("meters_tall > ?", params[:threshold].to_i)
     end
   end
 
