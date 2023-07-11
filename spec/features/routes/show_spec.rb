@@ -61,6 +61,18 @@ RSpec.describe 'routes page' do
       expect(current_path).to eq("/routes/#{@route_4.id}/edit")
     end
 
+    it 'has a button to delete the route' do
+      visit "/routes"
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
+
+      click_on "Invocation Delete"
+
+      expect(page).to_not have_content("Invocation")
+      expect(page).to have_content("Malvado")
+      expect(page).to have_content("Inferno")
+    end
     # User Story 23, Child Delete From Childs Index Page 
 
     # As a visitor
