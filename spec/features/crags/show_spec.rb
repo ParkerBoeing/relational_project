@@ -185,7 +185,7 @@ RSpec.describe 'crags page' do
       expect(current_path).to eq("/crags/#{@crag_1.id}/routes/new")
     end
 
-    it 'can create a child automatically associated with given crag ID' do
+    it 'can create a route automatically associated with given crag ID' do
       visit "/crags/#{@crag_1.id}/routes/new"
       fill_in('route[name]', with: 'Escapades')
       fill_in('route[meters_tall]', with: 30)
@@ -219,5 +219,31 @@ RSpec.describe 'crags page' do
       click_on "Invocation Update"
       expect(current_path).to eq("/routes/#{@route_2.id}/edit")
     end
+
+    it 'can display route records with meters_tall over a given threshhold' do
+      @route_5 = @crag_1.routes.create!(name: "Mars", meters_tall: 10, bolted: false)
+      @route_6 = @crag_1.routes.create!(name: "Scar", meters_tall: 15, bolted: true)
+      visit "/crags/#{@crag_1.id}/routes"
+      fill_in('Height in meters:', with: 19)
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Extreme Unction")
+      expect(page).to have_content("Mars")
+      expect(page).to have_content("Scar")
+  
+      click_button('filter')
+      expect(current_path).to eq("/crags/#{@crag_1.id}/routes")
+
+      expect(page).to have_content("Invocation")
+      expect(page).to have_content("Extreme Unction")
+      expect(page).to_not have_content("Mars")
+      expect(page).to_not have_content("Scar")
+    end
+    # User Story 21, Display Records Over a Given Threshold 
+
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # I see a form that allows me to input a number value
+    # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+    # Then I am brought back to the current index page with only the records that meet that threshold shown.
   end
 end
